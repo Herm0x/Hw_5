@@ -1,0 +1,36 @@
+Test results for:
+"9789998819450",  "Frankenstein",  "Shelly",  0
+
+  [PASSED] numberOfWords: Frankenstein   : as expected, the expected and actual values are equal:  {7195}
+  [PASSED] wordCount: Frankenstein       : as expected, the expected and actual values are equal:  {24}
+  [PASSED] wordCount: life               : as expected, the expected and actual values are equal:  {114}
+  [PASSED] wordCount: feared             : as expected, the expected and actual values are equal:  {13}
+  [PASSED] wordCount: the                : as expected, the expected and actual values are equal:  {4187}
+  [PASSED] wordCount: nonexistent        : as expected, the expected and actual values are equal:  {0}
+  [PASSED] mostFrequentWord: Frankenstein: as expected, the expected and actual values are equal:  {the}
+  [PASSED] maxBucketSize: Frankenstein   : as expected, the expected and actual values are equal:  {6}
+
+
+Test results for:
+"9789998302938",  "Legend of Sleepy Hollow",  "Washington Irving",  0
+
+  [PASSED] numberOfWords: Sleepy Hollow   : as expected, the expected and actual values are equal:  {3231}
+  [PASSED] wordCount: Ichabod             : as expected, the expected and actual values are equal:  {45}
+  [PASSED] wordCount: the                 : as expected, the expected and actual values are equal:  {917}
+  [PASSED] wordCount: nonexistent         : as expected, the expected and actual values are equal:  {0}
+  [PASSED] mostFrequentWord: Sleepy Hollow: as expected, the expected and actual values are equal:  {the}
+  [PASSED] maxBucketSize: Sleepy Hollow   : as expected, the expected and actual values are equal:  {4}
+
+
+Test results for:
+"9780545310581",  "The Hunger Games",  "Suzanne Collins",  0
+
+  [PASSED] numberOfWords: Hunger Games    : as expected, the expected and actual values are equal:  {0}
+  [PASSED] wordCount: the                 : as expected, the expected and actual values are equal:  {0}
+  [PASSED] wordCount: nonexistent         : as expected, the expected and actual values are equal:  {0}
+  [PASSED] mostFrequentWord: Sleepy Hollow: as expected, the expected and actual values are equal:  {}
+  [PASSED] maxBucketSize: Sleepy Hollow   : as expected, the expected and actual values are equal:  {0}
+
+
+
+Summary: 19 of 19 (100%) tests passed
