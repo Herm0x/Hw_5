@@ -1,0 +1,8 @@
+Test results for:
+"9789998819450",  "Frankenstein",  "Shelly",  0
+
+  [PASSED] numberOfWords: Frankenstein   : as expected, the expected and actual values are equal:  {7195}
+  [PASSED] wordCount: Frankenstein       : as expected, the expected and actual values are equal:  {24}
+  [PASSED] wordCount: life               : as expected, the expected and actual values are equal:  {114}
+  [PASSED] wordCount: feared             : as expected, the expected and actual values are equal:  {13}
+  [PASSED] wordCount: the                : as expected, the expected and actual values are equal:  {4187}

@@ -56,25 +56,25 @@ namespace
     /// Constraint: Only "sanitized" words should be added to the frequency table. For example, leading and trailing punctuation,
     /// parentheses, brackets, etc. should be removed, but intra - word punctuation should remain. A working sanitize function has
     /// been provided.
-ExtendedBook::ExtendedBook(std::string_view theTitle, std::string_view theAuthor, std::string_view theIsbn, double thePrice): Book(theTitle, theAuthor, theIsbn, thePrice)
+ExtendedBook::ExtendedBook(std::string theTitle, std::string theAuthor, std::string theIsbn, double thePrice): Book{theTitle, theAuthor, theIsbn, thePrice}
 {
   std::string disk = Book::isbn();
-  disk += ".bok";
   std::ifstream fin(disk);
+  disk += ".bok";
 
-  std::string word;
-  while(fin >> word)
+  std::string readWord;
+  while(fin >> readWord)
   {
-    word = sanitize(word);
-    auto find = _number.find(word);
+    readWord = sanitize(readWord);
+    auto find = _number.find(readWord);
 
     if(find != _number.end())
     {
-      find-> ++second;
+      find-> second++;
     }
     else
     {
-      _number[word] = 1;
+      _number[readWord] = 1;
     }
   }
 }
@@ -86,12 +86,7 @@ ExtendedBook::ExtendedBook(std::string_view theTitle, std::string_view theAuthor
   /// Implement numberOfWords - This function takes no arguments and returns the number of unique (sanitized) words.
 std::size_t ExtendedBook::numberOfWords() const
 {
-  std::size_t size = 0;
-  for( auto it = _number.begin(); it != _number.end(); ++it )
-  {
-    ++size;
-  }
-  return size;
+  return this-> _number.size();
 }
 /////////////////////// END-TO-DO (2) ////////////////////////////
 
@@ -102,10 +97,7 @@ std::size_t ExtendedBook::numberOfWords() const
   /// of occurrence of that sanitized word.
 std::size_t ExtendedBook::wordCount(const std::string & word) const
 {
-  // make sure the word is sanitized
   std::string currentWord = sanitize(word);
-
-  // return word count for the word
   return _number.at(currentWord);
 }
 /////////////////////// END-TO-DO (3) ////////////////////////////
@@ -119,21 +111,17 @@ std::size_t ExtendedBook::wordCount(const std::string & word) const
     /// Adopt that word as your most frequent if its frequency is grater than your current most frequent.
 std::string ExtendedBook::mostFrequentWord() const
 {
-  std::size_t max = 0;
-  std::string currentWord;
-  auto word = _number.begin();
-
-  while( word != _number.end() )
+  std::string recent;
+  for(auto it = _number.begin(); it != _number.end(); ++it)
   {
-    // for each word in container, if word count > max, set word count to max
-    if(word-> second > max)
+    std::size_t i = 0;
+    if(it-> second > i)
     {
-      currentWord = word-> first;
-      max = word-> second;
+      recent = it-> first;
+      i = it-> second;
     }
-    ++word;
   }
-  return currentWord;
+  return recent;
 }
 /////////////////////// END-TO-DO (4) ////////////////////////////
 
@@ -148,22 +136,20 @@ std::string ExtendedBook::mostFrequentWord() const
     /// and if the size of that bucket (bucket_size) is greater than your current max size, adopt that as your new current max size.
 std::size_t ExtendedBook::maxBucketSize() const
 {
-  std::size_t largestBucket = 0;
-  std::size_t currentBucketSize = 0;
-  std::size_t bucketCount = _number.bucket_count();
+  std::size_t bucket = _number.bucket_count();
+  std::size_t currentSize = 0;
+  std::size_t largeBucket = 0;
 
-  // for each bucket in hash table
-  for( std::size_t i = 0; i < bucketCount; ++i )
+  std::size_t i = 0;
+  while(i < bucket)
   {
-    // size of bucket at index i in hash table
-    currentBucketSize = _number.bucket_size( i );
-    // if the current bucket size is greater than the size of the largest bucket
-    if( currentBucketSize > largestBucket )
+    currentSize = _number.bucket_size(i);
+    if (currentSize > largeBucket)
     {
-      // assign current bucket size as the largest bucket size
-      largestBucket = currentBucketSize;
+      largeBucket = currentSize;
     }
+    ++i;
   }
-  return largestBucket;
+  return largeBucket;
 }
 /////////////////////// END-TO-DO (5) ////////////////////////////
