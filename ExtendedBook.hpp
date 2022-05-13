@@ -27,6 +27,6 @@ class ExtendedBook : public Book
       /// The class should have a single member attribute, of type std::unordered_map which is the C++ Standard Library's
       /// implementation of a hash table, to store the association of words (key) to the number of times a word occurs (value), also
       /// called the word's frequency.
-    std::unordered_map<std::string, unsigned int> _number;
+    std::unordered_map<std::string, unsigned int> frequency;
     /////////////////////// END-TO-DO (1) ////////////////////////////
 };

@@ -58,23 +58,23 @@ namespace
     /// been provided.
 ExtendedBook::ExtendedBook(std::string theTitle, std::string theAuthor, std::string theIsbn, double thePrice): Book{theTitle, theAuthor, theIsbn, thePrice}
 {
-  std::string disk = Book::isbn();
-  std::ifstream fin(disk);
-  disk += ".bok";
+  std::string file = Book::isbn();
+  std::ifstream disk(file);
+  file += ".bok";
 
-  std::string readWord;
-  while(fin >> readWord)
+  std::string read_word;
+  while(disk >> read_word)
   {
-    readWord = sanitize(readWord);
-    auto find = _number.find(readWord);
+    read_word = sanitize(read_word);
+    auto find = frequency.find(read_word);
 
-    if(find != _number.end())
+    if(find != frequency.end())
     {
       find-> second++;
     }
     else
     {
-      _number[readWord] = 1;
+      frequency[read_word] = 1;
     }
   }
 }
@@ -86,7 +86,7 @@ ExtendedBook::ExtendedBook(std::string theTitle, std::string theAuthor, std::str
   /// Implement numberOfWords - This function takes no arguments and returns the number of unique (sanitized) words.
 std::size_t ExtendedBook::numberOfWords() const
 {
-  return this-> _number.size();
+  return this-> frequency.size();
 }
 /////////////////////// END-TO-DO (2) ////////////////////////////
 
@@ -97,8 +97,8 @@ std::size_t ExtendedBook::numberOfWords() const
   /// of occurrence of that sanitized word.
 std::size_t ExtendedBook::wordCount(const std::string & word) const
 {
-  std::string currentWord = sanitize(word);
-  return _number.at(currentWord);
+  std::string word_count = sanitize(word);
+  return frequency.at(word_count);
 }
 /////////////////////// END-TO-DO (3) ////////////////////////////
 
@@ -112,9 +112,11 @@ std::size_t ExtendedBook::wordCount(const std::string & word) const
 std::string ExtendedBook::mostFrequentWord() const
 {
   std::string recent;
-  for(auto it = _number.begin(); it != _number.end(); ++it)
+
+  for(auto it = frequency.begin(); it != frequency.end(); ++it)
   {
     std::size_t i = 0;
+
     if(it-> second > i)
     {
       recent = it-> first;
@@ -136,20 +138,21 @@ std::string ExtendedBook::mostFrequentWord() const
     /// and if the size of that bucket (bucket_size) is greater than your current max size, adopt that as your new current max size.
 std::size_t ExtendedBook::maxBucketSize() const
 {
-  std::size_t bucket = _number.bucket_count();
-  std::size_t currentSize = 0;
-  std::size_t largeBucket = 0;
+  std::size_t bucket = frequency.bucket_count();
+  std::size_t bucket_size = 0;
+  std::size_t max_size = 0;
 
   std::size_t i = 0;
+
   while(i < bucket)
   {
-    currentSize = _number.bucket_size(i);
-    if (currentSize > largeBucket)
+    bucket_size = frequency.bucket_size(i);
+    if (bucket_size > max_size)
     {
-      largeBucket = currentSize;
+      max_size = bucket_size;
     }
     ++i;
   }
-  return largeBucket;
+  return max_size;
 }
 /////////////////////// END-TO-DO (5) ////////////////////////////
